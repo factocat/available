@@ -1,7 +1,7 @@
 from tld import get_tld
 from dns import resolver
 from pythonwhois.net import get_whois_raw as whois
-from fingerprints import fprints, fprints_available
+from .fingerprints import fprints, fprints_available
 
 
 def safe_domain(domain):
@@ -17,6 +17,10 @@ def safe_domain(domain):
         available = match(tld, _get_who_is(query))
 
     return available, bad_tld
+
+def domain(domain):
+    available ,_ =  safe_domain()
+    return available
     
 def _effective_tld_plus_one(domain):
     tld = get_tld(domain, fix_protocol=True)
@@ -46,7 +50,6 @@ def match(tld, who_is_response):
 	response data """
 
     if fprints.get(tld):
-        print(fprints[tld])
         if fprints[tld] in who_is_response:
             available = True
 
@@ -86,6 +89,3 @@ def _bad_tld(tld):
         return False
     except resolver.NXDOMAIN:
         return True
-
-
-print(safe_domain("dreamdomain.iq"))

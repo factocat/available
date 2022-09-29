@@ -21,3 +21,18 @@ if available :
         print("[+] Success!")
         
 ```
+
+The above example gives whether a domain is valid or not. Otherwise you could also simple check for domain availability
+
+```Python
+package main
+
+from available.checker import safe_domain
+
+domain := "dreamdomain.io"
+available = domain(domain)
+
+if available :
+        print("[+] Success!")
+        
+```
