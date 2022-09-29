@@ -27,7 +27,7 @@ The above example gives whether a domain is valid or not. Otherwise you could al
 ```Python
 package main
 
-from available.checker import safe_domain
+from available.checker import domain
 
 domain := "dreamdomain.io"
 available = domain(domain)
