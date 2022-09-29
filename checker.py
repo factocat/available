@@ -42,7 +42,7 @@ def match(tld, who_is_response):
 	Then checks if the fingerprint is in the whois
 	response data """
 
-    if fprints[tld]!="":
+    if fprints.get(tld):
         if fprints[tld] in who_is_response:
             available = True
 
@@ -82,7 +82,3 @@ def _bad_tld(tld):
         return False
     except resolver.NXDOMAIN:
         return True
-
-
-#print(get_who_is("amnjha.com"))
-print(safe_domain("amnjha.com"))
