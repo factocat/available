@@ -1,0 +1,4 @@
+requests==2.28.1
+pythonwhois-alt==2.4.5
+tld==0.12.6
+dnspython==2.2.1
