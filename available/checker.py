@@ -14,7 +14,7 @@ def safe_domain(domain):
     query = _effective_tld_plus_one(domain)
 
     if not bad_tld:
-        available = match(tld, get_who_is(query))
+        available = match(tld, _get_who_is(query))
 
     return available, bad_tld
     
@@ -31,7 +31,10 @@ def _effective_tld_plus_one(domain):
 
 def match(tld, who_is_response):
     available = False
-    who_is_response = " ".join(who_is_response)
+    if who_is_response:
+        who_is_response = " ".join(who_is_response)
+    else:
+        return available
 
     # .ca & .lt have opposite fingerprints
     if tld == "ca" or tld == "lt":
@@ -43,6 +46,7 @@ def match(tld, who_is_response):
 	response data """
 
     if fprints.get(tld):
+        print(fprints[tld])
         if fprints[tld] in who_is_response:
             available = True
 
@@ -56,7 +60,7 @@ def match(tld, who_is_response):
 
     return available
 
-def get_who_is(doamin):
+def _get_who_is(doamin):
     try:
         w = whois(doamin)
     except Exception as e:
@@ -82,3 +86,6 @@ def _bad_tld(tld):
         return False
     except resolver.NXDOMAIN:
         return True
+
+
+print(safe_domain("dreamdomain.iq"))

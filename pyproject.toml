@@ -1,0 +1,17 @@
+# pyproject.toml
+
+[tool.poetry]
+name = "dom-available"
+version = "0.1.0"
+description = ""
+authors = ["Aman Jha <amanjha22@gmail.com>"]
+readme = "README.md"
+packages = [{include = "available"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+
+[build-system]
+requires = ["poetry-core","requests==2.28.1","pythonwhois-alt==2.4.5","tld==0.12.6","dnspython==2.2.1"]
+build-backend = "poetry.core.masonry.api"
